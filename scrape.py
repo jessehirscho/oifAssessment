@@ -3,6 +3,7 @@ import pandas
 from selenium import webdriver
 
 
+
 ## GET BOOKING.COM REQUEST
 search_url = "https://www.booking.com"
 driver.get(search_url)
