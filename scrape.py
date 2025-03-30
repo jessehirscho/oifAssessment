@@ -40,13 +40,30 @@ def extract_listing_data(listing):
 
     try:
         review_text = listing.find_element(By.CSS_SELECTOR, "div[data-testid='review-score']").text.strip()
-        review_score_match = re.search(r'\d+\.\d+', review_text)  # Extract the numerical score
-        if review_score_match:
-            listing_data["review_score"] = review_score_match.group()
-        else:
+
+        # Extract review score
+        try:
+            review_score_match = re.search(r'\d+\.\d+', review_text)
+            if review_score_match:
+                listing_data["review_score"] = review_score_match.group()
+            else:
+                listing_data["review_score"] = "Review score not found"
+        except Exception:
             listing_data["review_score"] = "Review score not found"
+
+        # Extract number of reviews (using same review_text)
+        try:
+            num_reviews_match = re.search(r'(\d+(?:,\d+)*) real reviews?', review_text)
+            if num_reviews_match:
+                listing_data["num_reviews"] = num_reviews_match.group(1).replace(",", "")
+            else:
+                listing_data["num_reviews"] = "Number of reviews not found"
+        except Exception:
+            listing_data["num_reviews"] = "Number of reviews not found"
+
     except Exception:
         listing_data["review_score"] = "Review score not found"
+        listing_data["num_reviews"] = "Number of reviews not found"
 
     try:
         listing_data["price"] = listing.find_element(By.CSS_SELECTOR, "span[data-testid='price-and-discounted-price']").text.strip()
@@ -143,7 +160,7 @@ def scrape_listings(csv_out="listings.csv"):
 def write_to_csv(listings, csv_out):
     try:
         with open(csv_out, "w", newline="") as csv_file:
-            fieldnames = ["title", "address", "price", "review_score"]
+            fieldnames = ["title", "address", "price", "review_score", "num_reviews"]
             # fieldnames = ["title", "address", "room_type", "price", "review_score", "num_reviews"]
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()
