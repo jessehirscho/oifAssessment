@@ -50,6 +50,8 @@ def scrape_listings(csv_out="listings.csv"):
                     num_reviews = listing.find_element(By.CLASS_NAME, "bui-review-score__text").text
 
                     hotelsLs.append([title, address, room_type, price, review_score, num_reviews])
+
+
                 except:
                     continue
     except Exception as e:
@@ -57,13 +59,16 @@ def scrape_listings(csv_out="listings.csv"):
     finally:
         web_driver.quit()
 
-    return pandas.DataFrame(hotelsLs, columns=["Title" , "Address", "Headline Room Type", "Cost (AUD)", "Review Score", "# of Reviews"])
+    write_to_csv(hotelsLs, csv_output)
 
 
-def write_to_csv():
+def write_to_csv(listings, csv_output):
     try:
-        with open(csv_out, "w") as csv:
+        with open(csv_output, "w") as csv_file:
             fields = ["title", "address", "room_type", "price", "review_score", "num_reviews"]
+            writer = csv.DictWriter(csv_file, fields=fields)
+            writer.writeheader()
+            writer.writerows(listings)
     except Exception as e:
         print(f"Err out to CSV: {e}")
 
@@ -73,7 +78,7 @@ if __name__ == "__main__":
 
 # CSV functionality
 # data = pandas.DataFrame(hotelsLs, columns=["Title" , "Address", "Headline Room Type", "Cost (AUD)", "Review Score", "# of Reviews"])
-filename = 'test.csv'
-print("Checkpoint #3: " + filename)
+# filename = 'test.csv'
+# print("Checkpoint #3: " + filename)
 # data.convertToCSV(filename, index=False)
-print("Data officialy scraped!")
+# print("Data officialy scraped!")
