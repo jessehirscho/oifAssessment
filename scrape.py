@@ -63,17 +63,17 @@ def scrape_listings(csv_out="listings.csv"):
     ## GET BOOKING.COM REQUEST
     search_url = "https://www.booking.com/searchresults.en-gb.html?ss=Australia&checkin_year=2026&checkin_month=02&checkin_monthday=01&checkout_year=2026&checkout_month=02&checkout_monthday=02&group_adults=1&no_rooms=1&group_children=0&sb_lp=1"
     
-    print("Checkpoint #1: Scrape page HTML")
+    print("Checkpoint #1: Scrape begins\n")
 
     # Create tmp instance of chrome for selenium
     selenium_instance  = webdriver.ChromeOptions()
     selenium_instance.add_argument("--headless")
     selenium_instance.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
-    print("instance opened")
+    print("instance opened\n")
 
     web_driver = webdriver.Chrome(options=selenium_instance)
     web_driver.get(search_url)
-    print("driver created")
+    print("driver created\n")
 
     try: 
         try:
@@ -85,16 +85,17 @@ def scrape_listings(csv_out="listings.csv"):
             print(f"Total properties found: {properties_count}")
         except (NoSuchElementException, TimeoutException):
             print("Could not find properties count heading.")
-            properties_count = 10  # Default to 0 if not found
+            properties_count = 10000  
 
-        properties_scraped = 0
+        properties_scraped = 1
         while properties_scraped < properties_count:
             try:
                 # Explicit wait for listings to load
                 listings = WebDriverWait(web_driver, 20).until(
                     EC.presence_of_all_elements_located((By.CSS_SELECTOR, "div[data-testid='property-card']"))
                 )
-                print(f"Number of listings: {len(listings)}")
+                print(f"Number of listings: {len(listings)}\n")
+                
             except (TimeoutException, WebDriverException) as e:
                 print(f"Error loading listings: {e}")
                 time.sleep(5)  # Wait before retrying
@@ -105,21 +106,17 @@ def scrape_listings(csv_out="listings.csv"):
                     
                     listing_data = extract_listing_data(listing)
                     hotels.append(listing_data)
-
-                  
                     hotel_link = listing.find_element(By.CSS_SELECTOR, "a[data-testid='title-link']").get_attribute('href')
 
-                    web_driver.execute_script(f"window.open('{hotel_link}', '_blank');") #open new tab.
-                    web_driver.switch_to.window(web_driver.window_handles[1]) #switch to new tab.
-                    json_data = scrape_json_data(web_driver)
-
-                  
+                    web_driver.execute_script(f"window.open('{hotel_link}', '_blank');") # open new tab
+                    web_driver.switch_to.window(web_driver.window_handles[1]) # switch to new tab                 
                     web_driver.close()
                     web_driver.switch_to.window(web_driver.window_handles[0])
                     
-                    print(hotels)
                     properties_scraped += 1
+                    print(hotels, "\n")
                     print(properties_scraped)
+
                 except NoSuchElementException as e:
                     print(f"Click element not found: {e}")
 
