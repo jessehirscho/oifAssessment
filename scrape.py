@@ -11,12 +11,11 @@ search_url = "https://www.booking.com"
 page = requests.get(search_url)
 print(page.text)
 
-# driver.get(search_url)
 time.sleep(3)  # Allow the page to load
 
 
 # SCRAPE LISTINGS
-def scrape_listings(driver):
+def scrape_listings(csv_out="listings.csv"):
     hotelsLs = []
     
     ## GET BOOKING.COM REQUEST
@@ -38,7 +37,7 @@ def scrape_listings(driver):
     
     try: 
         while len(hotelsLs) < 100:
-            listings = driver.find_elements(By.CLASS_NAME, "sr_property_block")
+            listings = web_driver.find_elements(By.CLASS_NAME, "sr_property_block")
             print("Checkpoint #2")
 
             for listing in listings:
@@ -56,11 +55,21 @@ def scrape_listings(driver):
     except Exception as e:
         print(f"Err: {e}")
     finally:
-        driver.quit()
+        web_driver.quit()
 
     return pandas.DataFrame(hotelsLs, columns=["Title" , "Address", "Headline Room Type", "Cost (AUD)", "Review Score", "# of Reviews"])
 
 
+def write_to_csv():
+    try:
+        with open(csv_out, "w") as csv:
+            fields = ["title", "address", "room_type", "price", "review_score", "num_reviews"]
+    except Exception as e:
+        print(f"Err out to CSV: {e}")
+
+
+if __name__ == "__main__":
+    scrape_listings()
 
 # CSV functionality
 # data = pandas.DataFrame(hotelsLs, columns=["Title" , "Address", "Headline Room Type", "Cost (AUD)", "Review Score", "# of Reviews"])
