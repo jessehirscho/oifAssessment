@@ -4,6 +4,8 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 
 
 ## GET BOOKING.COM REQUEST
@@ -38,7 +40,6 @@ def scrape_listings(csv_out="listings.csv"):
     try: 
         while len(hotelsLs) < 100:
             listings = web_driver.find_elements(By.CLASS_NAME, "sr_property_block")
-            print("Checkpoint #2")
 
             for listing in listings:
                 try:
@@ -50,21 +51,32 @@ def scrape_listings(csv_out="listings.csv"):
                     num_reviews = listing.find_element(By.CLASS_NAME, "bui-review-score__text").text
 
                     hotelsLs.append([title, address, room_type, price, review_score, num_reviews])
+                except NoSuchElementException:
+                    print("Click element not found")
 
-
-                except:
-                    continue
+                    try:
+                        next_button = web_driver.find_element(By.CLASS_NAME, "pagenext")
+                        next_button.click()
+                        time.sleep(3)
+                    
+                    except NoSuchElementException:
+                        print("No more pages ")
+                        break
+                    except TimeoutException:
+                        print("Timeout!!!!")
+                        break
+           
     except Exception as e:
         print(f"Err: {e}")
     finally:
         web_driver.quit()
 
-    write_to_csv(hotelsLs, csv_output)
+    write_to_csv(hotelsLs, csv_out)
 
 
-def write_to_csv(listings, csv_output):
+def write_to_csv(listings, csv_out):
     try:
-        with open(csv_output, "w") as csv_file:
+        with open(csv_out, "w") as csv_file:
             fields = ["title", "address", "room_type", "price", "review_score", "num_reviews"]
             writer = csv.DictWriter(csv_file, fields=fields)
             writer.writeheader()
