@@ -38,6 +38,20 @@ def extract_listing_data(listing):
     except Exception:
         listing_data["address"] = "Address not found"
 
+     # Extract Room Type
+    try:
+        room_type_element = listing.find_element(By.CSS_SELECTOR, "div[data-testid='recommended-units']")
+        lines = room_type_element.text.strip().split("\n")  # Split text into lines
+
+        if len(lines) > 1:  # Ensure at least two lines exist
+            room_type = lines[1]  # Get the second line
+        else:
+            room_type = "Room type not found"
+
+    except Exception:
+        room_type = "Room type not found"
+    listing_data["room_type"] = room_type  # Store result
+
     try:
         review_text = listing.find_element(By.CSS_SELECTOR, "div[data-testid='review-score']").text.strip()
 
@@ -49,7 +63,7 @@ def extract_listing_data(listing):
             else:
                 listing_data["review_score"] = "Review score not found"
         except Exception:
-            listing_data["review_score"] = "Review score not found"
+            listing_data["review_xscore"] = "Review score not found"
 
         # Extract number of reviews (using same review_text)
         try:
@@ -160,8 +174,8 @@ def scrape_listings(csv_out="listings.csv"):
 def write_to_csv(listings, csv_out):
     try:
         with open(csv_out, "w", newline="") as csv_file:
-            fieldnames = ["title", "address", "price", "review_score", "num_reviews"]
-            # fieldnames = ["title", "address", "room_type", "price", "review_score", "num_reviews"]
+            # fieldnames = ["title", "address", "price", "review_score", "num_reviews"]
+            fieldnames = ["title", "address", "room_type", "price", "review_score", "num_reviews"]
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(listings)

@@ -1,27 +1,27 @@
-title,address,price,review_score,num_reviews
-ibis Brisbane Airport,Brisbane,AUD 249,8.3,14108
-Caves Coastal Bar & Bungalows,Caves Beach,AUD 369,8.3,630
-Flinders Ranges Motel - The Mill,Quorn,AUD 116,8.9,522
-YHA Fremantle Prison,Fremantle,AUD 65,8.3,1885
-The Albion Motel Castlemaine,Castlemaine,AUD 210,8.9,516
-Altona Motel,Uralla,AUD 134,8.6,502
-The Continental Hotel,Broome,AUD 229,8.2,1204
-Western Downs Motor Inn,Miles,AUD 159,8.9,568
-Atlantis Hotel Melbourne,"Melbourne CBD, Melbourne",AUD 181,8.3,10379
-Atherton Hinterland Motel,Atherton,AUD 153,8.6,574
-Oaks Darwin Elan Hotel,"Darwin CBD, Darwin",AUD 169,8.4,3334
-"YHA Grampians Eco, Halls Gap",Halls Gap,AUD 45,8.7,577
-Balranald Club Motel,Balranald,AUD 140,8.4,1067
-Bundanoon Country Inn Motel,Bundanoon,AUD 119,8.0,1064
-Maffra Motor Inn,Maffra,AUD 140,8.5,580
-Oaks Gladstone Grand Hotel,Gladstone,AUD 144,8.7,2423
-Breakfree Port Pirie,Port Pirie,AUD 110,8.5,830
-Best Western Plus Buckingham International,Moorabbin,AUD 145,7.8,1352
-Deniliquin Country Club Motor Inn,Deniliquin,AUD 155,8.5,747
-"Hospitality Carnarvon, SureStay Collection by Best Western",Carnarvon,AUD 182,7.9,1949
-Hospitality Geraldton SureStay Collection by Best Western,Geraldton,AUD 208,8.2,2243
-Argus Hotel Darwin,"Darwin CBD, Darwin",AUD 132,8.3,2539
-Motel Yarrawonga,Yarrawonga,AUD 146,8.7,306
-Quest Campbelltown,Campbelltown,AUD 170,8.5,1261
-Mercure Kangaroo Island Lodge,American River,AUD 237,8.2,501
-The Formby Hotel,Devonport,AUD 36,7.9,1691
+title,address,room_type,price,review_score,num_reviews
+Olde Tudor Hotel,Launceston,1 large double bed,AUD 163,8.0,2666
+Caves Coastal Bar & Bungalows,Caves Beach,Private suite,AUD 369,8.3,630
+Rydges World Square,"Sydney CBD, Sydney",Multiple bed types,AUD 276,8.1,5883
+Sage Melbourne Ringwood,Ringwood,1 extra-large double bed,AUD 204,8.7,1417
+Kryal Castle Ballarat,Ballarat,"8 beds (1 double, 7 bunk beds)",AUD 153,8.1,1769
+ibis Brisbane Airport,Brisbane,"2 beds (1 single, 1 double)",AUD 249,8.3,14108
+Quest Bella Vista,Baulkham Hills,1 double bed,AUD 193,8.5,1598
+Angel Sussurri,Yarramalong,Multiple bed types,AUD 300,9.0,172
+Dolphin Lodge Albany - Self Contained Apartments at Middleton Beach,Albany,1 large double bed,AUD 205,9.0,2640
+Atura Blacktown,Blacktown,1 extra-large double bed,AUD 179,8.1,1282
+Bay Of Fires Apartments,St Helens,Private suite • 1 bedroom • 1 living room • 1 bathroom • 44 m²,AUD 322,8.7,1044
+Whitsunday Sands Resort,Bowen,1 double bed,AUD 170,9.0,1607
+Aquarius Kawana,Kawana Waters,Entire apartment • 2 bedrooms • 1 living room • 2 bathrooms • 1 kitchen • 100 m²,AUD 297,8.6,2318
+Holiday Inn Melbourne Airport by IHG,Melbourne,1 large double bed,AUD 207,8.3,9551
+Low Head Pilot Station,Low Head,Entire holiday home • 1 bedroom • 1 living room • 1 bathroom • 1 kitchen • 70 m²,AUD 358,8.8,564
+Flinders Ranges Motel - The Mill,Quorn,1 large double bed,AUD 116,8.9,522
+YHA Fremantle Prison,Fremantle,Bed in dormitory,AUD 65,8.3,1885
+The Albion Motel Castlemaine,Castlemaine,1 large double bed,AUD 210,8.9,516
+Lancemore Milawa,Milawa,1 extra-large double bed,AUD 374,8.6,420
+Altona Motel,Uralla,1 double bed,AUD 134,8.6,502
+The Continental Hotel,Broome,Beds: 1 double or 2 singles,AUD 229,8.2,1204
+Western Downs Motor Inn,Miles,1 large double bed,AUD 159,8.9,568
+Atlantis Hotel Melbourne,"Melbourne CBD, Melbourne",1 double bed,AUD 181,8.3,10379
+Atherton Hinterland Motel,Atherton,1 large double bed,AUD 153,8.6,574
+Contour Hotel Katherine,Katherine,"2 beds (1 single, 1 double)",AUD 273,8.1,1363
+Bridge Hotel,Smithton,1 single bed,AUD 73,8.0,977
