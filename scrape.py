@@ -39,7 +39,12 @@ def extract_listing_data(listing):
         listing_data["address"] = "Address not found"
 
     try:
-        listing_data["review_score"] = listing.find_element(By.CSS_SELECTOR, "div[data-testid='review-score']").text.strip()
+        review_text = listing.find_element(By.CSS_SELECTOR, "div[data-testid='review-score']").text.strip()
+        review_score_match = re.search(r'\d+\.\d+', review_text)  # Extract the numerical score
+        if review_score_match:
+            listing_data["review_score"] = review_score_match.group()
+        else:
+            listing_data["review_score"] = "Review score not found"
     except Exception:
         listing_data["review_score"] = "Review score not found"
 
@@ -108,12 +113,7 @@ def scrape_listings(csv_out="listings.csv"):
                     web_driver.switch_to.window(web_driver.window_handles[1]) #switch to new tab.
                     json_data = scrape_json_data(web_driver)
 
-                    address = "Address not found"
-                    if json_data:
-                        address = json_data.get("address", {}).get("streetAddress", "Address not found")
-
-                    listing_data['address_json'] = address
-
+                  
                     web_driver.close()
                     web_driver.switch_to.window(web_driver.window_handles[0])
                     
@@ -146,7 +146,7 @@ def scrape_listings(csv_out="listings.csv"):
 def write_to_csv(listings, csv_out):
     try:
         with open(csv_out, "w", newline="") as csv_file:
-            fieldnames = ["title", "address", "address_json", "price", "review_score", "price"]
+            fieldnames = ["title", "address", "price", "review_score"]
             # fieldnames = ["title", "address", "room_type", "price", "review_score", "num_reviews"]
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()

@@ -1,105 +1,27 @@
-title,address,address_json,price,review_score,price
-Whitsunday Sands Resort,Bowen,Address not found,AUD 170,"Scored 9.0
-9.0
-Superb
-1,607 reviews",AUD 170
-Caves Coastal Bar & Bungalows,Caves Beach,Address not found,AUD 369,"Scored 8.3
-8.3
-Very good
-630 reviews",AUD 369
-Contour Hotel Katherine,Katherine,Address not found,AUD 273,"Scored 8.1
-8.1
-Very good
-1,363 reviews",AUD 273
-Woomargama Motel,Woomargama,Address not found,AUD 122,"Scored 8.9
-8.9
-Fabulous
-1,371 reviews",AUD 122
-Aquarius Kawana,Kawana Waters,Address not found,AUD 297,"Scored 8.6
-8.6
-Fabulous
-2,318 reviews",AUD 297
-Sage Melbourne Ringwood,Ringwood,Address not found,AUD 204,"Scored 8.7
-8.7
-Fabulous
-1,417 reviews",AUD 204
-Bay Of Fires Apartments,St Helens,Address not found,AUD 322,"Scored 8.7
-8.7
-Fabulous
-1,044 reviews",AUD 322
-Low Head Pilot Station,Low Head,Address not found,AUD 358,"Scored 8.8
-8.8
-Fabulous
-564 reviews",AUD 358
-Atura Blacktown,Blacktown,Address not found,AUD 179,"Scored 8.1
-8.1
-Very good
-1,282 reviews",AUD 179
-Kalbarri Palm Resort,Kalbarri,Address not found,AUD 139,"Scored 8.0
-8.0
-Very good
-3,214 reviews",AUD 139
-Angel Sussurri,Yarramalong,Address not found,AUD 300,"Scored 9.0
-9.0
-Superb
-172 reviews",AUD 300
-Kryal Castle Ballarat,Ballarat,Address not found,AUD 153,"Scored 8.1
-8.1
-Very good
-1,769 reviews",AUD 153
-Quest Bella Vista,Baulkham Hills,Address not found,AUD 193,"Scored 8.5
-8.5
-Very good
-1,598 reviews",AUD 193
-Ceduna Foreshore Hotel Motel,Ceduna,Address not found,AUD 150,"Scored 8.2
-8.2
-Very good
-1,660 reviews",AUD 150
-Echelon Apartments Yeppoon,Yeppoon,Address not found,AUD 385,"Scored 8.5
-8.5
-Very good
-993 reviews",AUD 385
-Argosy Motor Inn,Devonport,Address not found,AUD 142,"Scored 8.4
-8.4
-Very good
-3,165 reviews",AUD 142
-Pine Tree Motel,Katherine,Address not found,AUD 106,"Scored 8.1
-8.1
-Very good
-1,597 reviews",AUD 106
-Dolphin Lodge Albany - Self Contained Apartments at Middleton Beach,Albany,Address not found,AUD 205,"Scored 9.0
-9.0
-Superb
-2,640 reviews",AUD 205
-"Hospitality Carnarvon, SureStay Collection by Best Western",Carnarvon,Address not found,AUD 182,"Scored 7.9
-7.9
-Good
-1,949 reviews",AUD 182
-Robetown Motor Inn & Apartments,Robe,Address not found,AUD 155,"Scored 8.0
-8.0
-Very good
-1,320 reviews",AUD 155
-Maclin Lodge Motel,Campbelltown,Address not found,AUD 145,"Scored 8.1
-8.1
-Very good
-2,273 reviews",AUD 145
-Gundagai Tourist Suites,Gundagai,Address not found,AUD 150,"Scored 8.6
-8.6
-Fabulous
-1,179 reviews",AUD 150
-Exmouth Escape Resort,Exmouth,Address not found,AUD 298,"Scored 8.6
-8.6
-Fabulous
-1,266 reviews",AUD 298
-Cobb Inlander Motel,Hay,Address not found,AUD 160,"Scored 6.7
-6.7
-Review score
-1,357 reviews",AUD 160
-Lancemore Milawa,Milawa,Address not found,AUD 374,"Scored 8.6
-8.6
-Fabulous
-420 reviews",AUD 374
-"Mu S Boutique Motel ""Matthew Flinders""",Coonabarabran,Address not found,AUD 159,"Scored 7.8
-7.8
-Good
-1,686 reviews",AUD 159
+title,address,price,review_score
+Olde Tudor Hotel,Launceston,AUD 163,8.0
+Caves Coastal Bar & Bungalows,Caves Beach,AUD 369,8.3
+Sage Melbourne Ringwood,Ringwood,AUD 204,8.7
+Kryal Castle Ballarat,Ballarat,AUD 153,8.1
+ibis Brisbane Airport,Brisbane,AUD 249,8.3
+Quest Bella Vista,Baulkham Hills,AUD 255,8.5
+Atura Blacktown,Blacktown,AUD 199,8.1
+Angel Sussurri,Yarramalong,AUD 300,9.0
+Dolphin Lodge Albany - Self Contained Apartments at Middleton Beach,Albany,AUD 205,9.0
+Bay Of Fires Apartments,St Helens,AUD 322,8.7
+Whitsunday Sands Resort,Bowen,AUD 170,9.0
+Aquarius Kawana,Kawana Waters,AUD 297,8.6
+Woomargama Motel,Woomargama,AUD 122,8.9
+Low Head Pilot Station,Low Head,AUD 358,8.8
+Holiday Inn Melbourne Airport by IHG,Melbourne,AUD 207,8.3
+Flinders Ranges Motel - The Mill,Quorn,AUD 116,8.9
+YHA Fremantle Prison,Fremantle,AUD 65,8.3
+Lancemore Milawa,Milawa,AUD 500,8.6
+The Albion Motel Castlemaine,Castlemaine,AUD 210,8.9
+Atherton Hinterland Motel,Atherton,AUD 153,8.6
+The Continental Hotel,Broome,AUD 229,8.2
+Western Downs Motor Inn,Miles,AUD 159,8.9
+Altona Motel,Uralla,AUD 134,8.6
+Contour Hotel Katherine,Katherine,AUD 273,8.1
+Atlantis Hotel Melbourne,"Melbourne CBD, Melbourne",AUD 181,8.3
+"YHA Grampians Eco, Halls Gap",Halls Gap,AUD 45,8.7
