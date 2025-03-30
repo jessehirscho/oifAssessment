@@ -1,9 +1,23 @@
 import time
 import csv
+import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
+
+
+def scrape_json_data(driver):
+    try:
+        script_html_tag = driver.find_element(By.XPATH, '//script[@type="application/ld+json"]')
+        json_str = script_html_tag.get_attribtute('innterHTML')
+        data = json.loads(json_str)
+        print(data)
+        return data
+    except Exception as e:
+        print(f"error scraping JSON: {e}")
+        return None
+
 
 
 # SCRAPE LISTINGS
