@@ -9,14 +9,6 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 
 
-## GET BOOKING.COM REQUEST
-# search_url = "https://www.booking.com"
-# page = requests.get(search_url)
-# print(page.text)
-
-time.sleep(3)  # Allow the page to load
-
-
 # SCRAPE LISTINGS
 def scrape_listings(csv_out="listings.csv"):
     hotelsLs = []
@@ -24,10 +16,6 @@ def scrape_listings(csv_out="listings.csv"):
     ## GET BOOKING.COM REQUEST
     search_url = "https://www.booking.com/searchresults.en-gb.html?ss=Australia&checkin_year=2026&checkin_month=02&checkin_monthday=01&checkout_year=2026&checkout_month=02&checkout_monthday=02&group_adults=1&no_rooms=1&group_children=0&sb_lp=1"
     
-    # full_page = requests.get(search_url)
-    # print(full_page.text)
-
-    # Scrape page HTML 
     print("Checkpoint #1: Scrape page HTML")
 
     # Create tmp instance of chrome for selenium
@@ -89,9 +77,3 @@ def write_to_csv(listings, csv_out):
 if __name__ == "__main__":
     scrape_listings()
 
-# CSV functionality
-# data = pandas.DataFrame(hotelsLs, columns=["Title" , "Address", "Headline Room Type", "Cost (AUD)", "Review Score", "# of Reviews"])
-# filename = 'test.csv'
-# print("Checkpoint #3: " + filename)
-# data.convertToCSV(filename, index=False)
-# print("Data officialy scraped!")
