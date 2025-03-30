@@ -75,7 +75,7 @@ def extract_listing_data(listing):
 def scrape_listings(csv_out="listings.csv"):
     hotels = []
     
-    ## GET Booking.COM REQUEST
+    ## GET BOOKING.COM REQUEST
     search_url = "https://www.booking.com/searchresults.en-gb.html?ss=Australia&checkin_year=2026&checkin_month=02&checkin_monthday=01&checkout_year=2026&checkout_month=02&checkout_monthday=02&group_adults=1&no_rooms=1&group_children=0&sb_lp=1"
     
     print("Checkpoint #1: Scrape begins\n")
@@ -119,7 +119,6 @@ def scrape_listings(csv_out="listings.csv"):
                 time.sleep(5) 
                 continue
 
-            search_url = web_driver.current_url
             for listing in listings:
                 try:
                     
@@ -127,15 +126,11 @@ def scrape_listings(csv_out="listings.csv"):
                     hotels.append(listing_data)
                     hotel_link = listing.find_element(By.CSS_SELECTOR, "a[data-testid='title-link']").get_attribute('href')
 
-                    try:
-                        # nav to htoel listing page
-                        hotel_link = listing.find_element(By.CSS_SELECTOR, "a[data-testid='title-link']").get_attribute('href')
-                        web_driver.get(hotel_link)
-                        web_driver.get(search_url)
+                    web_driver.execute_script(f"window.open('{hotel_link}', '_blank');") # open new tab
+                    web_driver.switch_to.window(web_driver.window_handles[1]) # switch to new tab                 
+                    web_driver.close()
+                    web_driver.switch_to.window(web_driver.window_handles[0])
                     
-                    except Exception as e:
-                        print(f"Err getting to listing: {e}")
-
                     properties_scraped += 1
                     print(hotels, "\n")
                     print(properties_scraped)
