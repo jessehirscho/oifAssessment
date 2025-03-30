@@ -99,7 +99,7 @@ def scrape_listings(csv_out="listings.csv"):
                     # price = listing.find_element(By.CSS_SELECTOR, "span[data-testid='price-and-discounted-price']").text.strip()
                     # review_score = listing.find_element(By.CLASS_NAME, "bui-review-score__badge").text.strip()
                     # num_reviews = listing.find_element(By.CLASS_NAME, "bui-review-score__text").text.split(" ")[0]
-                    hotel_link = listing.find_element(By.CLASS_NAME, "a[data-testid='title-link']").get_attribute('href')
+                    hotel_link = listing.find_element(By.CSS_SELECTOR, "a[data-testid='title-link']").get_attribute('href')
 
                     web_driver.execute_script(f"window.open('{hotel_link}', '_blank');") #open new tab.
                     web_driver.switch_to.window(web_driver.window_handles[1]) #switch to new tab.
@@ -147,7 +147,7 @@ def scrape_listings(csv_out="listings.csv"):
 def write_to_csv(listings, csv_out):
     try:
         with open(csv_out, "w", newline="") as csv_file:
-            fieldnames = ["title", "address", "address_json", "price", "review_score"]
+            fieldnames = ["title", "address", "address_json", "price", "review_score", "price"]
             # fieldnames = ["title", "address", "room_type", "price", "review_score", "num_reviews"]
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()
