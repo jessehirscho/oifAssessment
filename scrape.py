@@ -10,7 +10,7 @@ from selenium.common.exceptions import NoSuchElementException
 def scrape_json_data(driver):
     try:
         script_html_tag = driver.find_element(By.XPATH, '//script[@type="application/ld+json"]')
-        json_str = script_html_tag.get_attribtute('innterHTML')
+        json_str = script_html_tag.get_attribute('innterHTML')
         data = json.loads(json_str)
         print(data)
         return data
@@ -33,15 +33,16 @@ def scrape_listings(csv_out="listings.csv"):
     selenium_instance  = webdriver.ChromeOptions()
     selenium_instance.add_argument("--headless")
     selenium_instance.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+    print("instance opened")
 
     web_driver = webdriver.Chrome(options=selenium_instance)
     web_driver.get(search_url)
-    
-    i = 0
-    try: 
-        while i < 10000:
-            listings = web_driver.find_elements(By.CLASS_NAME, "sr_property_block")
+    print("driver created")
 
+    try: 
+        while True:
+            listings = web_driver.find_elements(By.CLASS_NAME, "sr_property_block")
+            print(listings)
             for listing in listings:
                 try:
                     title = listing.find_element(By.CLASS_NAME, "sr-hotel__name").text.strip()
@@ -50,6 +51,12 @@ def scrape_listings(csv_out="listings.csv"):
                     price = listing.find_element(By.CLASS_NAME, "bui-price-display__value").text.strip()
                     review_score = listing.find_element(By.CLASS_NAME, "bui-review-score__badge").text.strip()
                     num_reviews = listing.find_element(By.CLASS_NAME, "bui-review-score__text").text.split(" ")[0]
+
+                    json_data = scrape_json_data(web_driver)
+                    address = "Address not found"
+                    if json_data:
+                        address = json_data.get("address", {}).get("streetAddress", "Address not found")
+
 
                     hotels.append({"title": title, 
                                     "address": address, 
@@ -66,7 +73,6 @@ def scrape_listings(csv_out="listings.csv"):
                         next_button = web_driver.find_element(By.CLASS_NAME, "pagenext")
                         next_button.click()
                         time.sleep(3)
-                        i += 1
                     
                     except NoSuchElementException as e:
                         print(f"No more pages {e}")
@@ -78,7 +84,6 @@ def scrape_listings(csv_out="listings.csv"):
     except Exception as e:
         print(f"Err: {e}")
     finally:
-        print(i)
         web_driver.quit()
 
     write_to_csv(hotels, csv_out)
