@@ -1,6 +1,7 @@
 import time
 import csv
 import json
+import re
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
@@ -47,11 +48,6 @@ def extract_listing_data(listing):
     except Exception:
         listing_data["price"] = "Price not found"
 
-    try:
-        listing_data["image_src"] = listing.find_element(By.CSS_SELECTOR, "img[data-testid='image']").get_attribute("src")
-    except Exception:
-        listing_data["image_src"] = "Image not found"
-
     return listing_data
 
 
@@ -75,7 +71,19 @@ def scrape_listings(csv_out="listings.csv"):
     print("driver created")
 
     try: 
-        while True:
+        try:
+            properties_heading = WebDriverWait(web_driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, 'h1[aria-label*="properties found"]'))
+            )
+            properties_text = properties_heading.text
+            properties_count = int(re.search(r'\d+', properties_text).group())  # Extract the number
+            print(f"Total properties found: {properties_count}")
+        except (NoSuchElementException, TimeoutException):
+            print("Could not find properties count heading.")
+            properties_count = 10  # Default to 0 if not found
+
+        properties_scraped = 0
+        while properties_scraped < properties_count:
             try:
                 # Explicit wait for listings to load
                 listings = WebDriverWait(web_driver, 20).until(
@@ -93,12 +101,7 @@ def scrape_listings(csv_out="listings.csv"):
                     listing_data = extract_listing_data(listing)
                     hotels.append(listing_data)
 
-                    # title = listing.find_element(By.CLASS_NAME, "sr-hotel__name").text.strip()
-                    # address = listing.find_element(By.CLASS_NAME, "sr_card_address_line").text.strip()
-                    # room_type = listing.find_element(By.CLASS_NAME, "room_link").text.strip()
-                    # price = listing.find_element(By.CSS_SELECTOR, "span[data-testid='price-and-discounted-price']").text.strip()
-                    # review_score = listing.find_element(By.CLASS_NAME, "bui-review-score__badge").text.strip()
-                    # num_reviews = listing.find_element(By.CLASS_NAME, "bui-review-score__text").text.split(" ")[0]
+                  
                     hotel_link = listing.find_element(By.CSS_SELECTOR, "a[data-testid='title-link']").get_attribute('href')
 
                     web_driver.execute_script(f"window.open('{hotel_link}', '_blank');") #open new tab.
@@ -113,14 +116,10 @@ def scrape_listings(csv_out="listings.csv"):
 
                     web_driver.close()
                     web_driver.switch_to.window(web_driver.window_handles[0])
-                    # hotels.append({"title": title, 
-                    #                 "address": address, 
-                    #                 "room_type": room_type, 
-                    #                 "price": price, 
-                    #                 "review_score": review_score, 
-                    #                 "num_reviews": num_reviews})
-                    print(hotels)
                     
+                    print(hotels)
+                    properties_scraped += 1
+                    print(properties_scraped)
                 except NoSuchElementException as e:
                     print(f"Click element not found: {e}")
 
