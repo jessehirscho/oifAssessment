@@ -5,6 +5,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 
 def scrape_json_data(driver):
@@ -41,18 +45,33 @@ def scrape_listings(csv_out="listings.csv"):
 
     try: 
         while True:
-            listings = web_driver.find_elements(By.CLASS_NAME, "sr_property_block")
-            print(listings)
+            try:
+                # Explicit wait for listings to load
+                listings = WebDriverWait(web_driver, 10).until(
+                    EC.presence_of_all_elements_located((By.CLASS_NAME, "property-card"))
+                )
+                print(f"Number of listings: {len(listings)}")
+            except (TimeoutException, WebDriverException) as e:
+                print(f"Error loading listings: {e}")
+                time.sleep(5)  # Wait before retrying
+                continue
+
+            # listings = web_driver.find_elements(By.CLASS_NAME, "sr_property_block")
+            # print(listings)
             for listing in listings:
                 try:
                     title = listing.find_element(By.CLASS_NAME, "sr-hotel__name").text.strip()
                     address = listing.find_element(By.CLASS_NAME, "sr_card_address_line").text.strip()
                     room_type = listing.find_element(By.CLASS_NAME, "room_link").text.strip()
-                    price = listing.find_element(By.CLASS_NAME, "bui-price-display__value").text.strip()
+                    price = listing.find_element(By.CSS_SELECTOR, "span[data-testid='price-and-discounted-price']").text.strip()
                     review_score = listing.find_element(By.CLASS_NAME, "bui-review-score__badge").text.strip()
                     num_reviews = listing.find_element(By.CLASS_NAME, "bui-review-score__text").text.split(" ")[0]
+                    hotel_link = listing.find_element(By.CLASS_NAME, "hotel_name_link").get_attribute('href')
 
+                    web_driver.execute_script(f"window.open('{hotel_link}', '_blank');") #open new tab.
+                    web_driver.switch_to.window(web_driver.window_handles[1]) #switch to new tab.
                     json_data = scrape_json_data(web_driver)
+
                     address = "Address not found"
                     if json_data:
                         address = json_data.get("address", {}).get("streetAddress", "Address not found")
