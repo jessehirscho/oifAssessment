@@ -1,6 +1,7 @@
 import time
 import pandas 
 import requests
+import csv
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -9,9 +10,9 @@ from selenium.common.exceptions import NoSuchElementException
 
 
 ## GET BOOKING.COM REQUEST
-search_url = "https://www.booking.com"
-page = requests.get(search_url)
-print(page.text)
+# search_url = "https://www.booking.com"
+# page = requests.get(search_url)
+# print(page.text)
 
 time.sleep(3)  # Allow the page to load
 
@@ -23,8 +24,8 @@ def scrape_listings(csv_out="listings.csv"):
     ## GET BOOKING.COM REQUEST
     search_url = "https://www.booking.com/searchresults.en-gb.html?ss=Australia&checkin_year=2026&checkin_month=02&checkin_monthday=01&checkout_year=2026&checkout_month=02&checkout_monthday=02&group_adults=1&no_rooms=1&group_children=0&sb_lp=1"
     
-    full_page = requests.get(search_url)
-    print(full_page.text)
+    # full_page = requests.get(search_url)
+    # print(full_page.text)
 
     # Scrape page HTML 
     print("Checkpoint #1: Scrape page HTML")
@@ -38,7 +39,7 @@ def scrape_listings(csv_out="listings.csv"):
     web_driver.get(search_url)
     
     try: 
-        while len(hotelsLs) < 100:
+        while True:
             listings = web_driver.find_elements(By.CLASS_NAME, "sr_property_block")
 
             for listing in listings:
@@ -77,8 +78,8 @@ def scrape_listings(csv_out="listings.csv"):
 def write_to_csv(listings, csv_out):
     try:
         with open(csv_out, "w") as csv_file:
-            fields = ["title", "address", "room_type", "price", "review_score", "num_reviews"]
-            writer = csv.DictWriter(csv_file, fields=fields)
+            fieldnames = ["title", "address", "room_type", "price", "review_score", "num_reviews"]
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(listings)
     except Exception as e:
