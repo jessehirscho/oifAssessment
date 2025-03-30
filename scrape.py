@@ -23,6 +23,37 @@ def scrape_json_data(driver):
         return None
 
 
+def extract_listing_data(listing):
+    """Extracts data from a single hotel listing element."""
+    listing_data = {}
+
+    try:
+        listing_data["title"] = listing.find_element(By.CSS_SELECTOR, "div[data-testid='title']").text.strip()
+    except Exception:
+        listing_data["title"] = "Title not found"
+
+    try:
+        listing_data["address"] = listing.find_element(By.CSS_SELECTOR, "span[data-testid='address']").text.strip()
+    except Exception:
+        listing_data["address"] = "Address not found"
+
+    try:
+        listing_data["review_score"] = listing.find_element(By.CSS_SELECTOR, "div[data-testid='review-score']").text.strip()
+    except Exception:
+        listing_data["review_score"] = "Review score not found"
+
+    try:
+        listing_data["price"] = listing.find_element(By.CSS_SELECTOR, "span[data-testid='price-and-discounted-price']").text.strip()
+    except Exception:
+        listing_data["price"] = "Price not found"
+
+    try:
+        listing_data["image_src"] = listing.find_element(By.CSS_SELECTOR, "img[data-testid='image']").get_attribute("src")
+    except Exception:
+        listing_data["image_src"] = "Image not found"
+
+    return listing_data
+
 
 # SCRAPE LISTINGS
 def scrape_listings(csv_out="listings.csv"):
@@ -47,8 +78,8 @@ def scrape_listings(csv_out="listings.csv"):
         while True:
             try:
                 # Explicit wait for listings to load
-                listings = WebDriverWait(web_driver, 10).until(
-                    EC.presence_of_all_elements_located((By.CLASS_NAME, "property-card"))
+                listings = WebDriverWait(web_driver, 20).until(
+                    EC.presence_of_all_elements_located((By.CSS_SELECTOR, "div[data-testid='property-card']"))
                 )
                 print(f"Number of listings: {len(listings)}")
             except (TimeoutException, WebDriverException) as e:
@@ -56,17 +87,19 @@ def scrape_listings(csv_out="listings.csv"):
                 time.sleep(5)  # Wait before retrying
                 continue
 
-            # listings = web_driver.find_elements(By.CLASS_NAME, "sr_property_block")
-            # print(listings)
             for listing in listings:
                 try:
-                    title = listing.find_element(By.CLASS_NAME, "sr-hotel__name").text.strip()
-                    address = listing.find_element(By.CLASS_NAME, "sr_card_address_line").text.strip()
-                    room_type = listing.find_element(By.CLASS_NAME, "room_link").text.strip()
-                    price = listing.find_element(By.CSS_SELECTOR, "span[data-testid='price-and-discounted-price']").text.strip()
-                    review_score = listing.find_element(By.CLASS_NAME, "bui-review-score__badge").text.strip()
-                    num_reviews = listing.find_element(By.CLASS_NAME, "bui-review-score__text").text.split(" ")[0]
-                    hotel_link = listing.find_element(By.CLASS_NAME, "hotel_name_link").get_attribute('href')
+                    
+                    listing_data = extract_listing_data(listing)
+                    hotels.append(listing_data)
+
+                    # title = listing.find_element(By.CLASS_NAME, "sr-hotel__name").text.strip()
+                    # address = listing.find_element(By.CLASS_NAME, "sr_card_address_line").text.strip()
+                    # room_type = listing.find_element(By.CLASS_NAME, "room_link").text.strip()
+                    # price = listing.find_element(By.CSS_SELECTOR, "span[data-testid='price-and-discounted-price']").text.strip()
+                    # review_score = listing.find_element(By.CLASS_NAME, "bui-review-score__badge").text.strip()
+                    # num_reviews = listing.find_element(By.CLASS_NAME, "bui-review-score__text").text.split(" ")[0]
+                    hotel_link = listing.find_element(By.CLASS_NAME, "a[data-testid='title-link']").get_attribute('href')
 
                     web_driver.execute_script(f"window.open('{hotel_link}', '_blank');") #open new tab.
                     web_driver.switch_to.window(web_driver.window_handles[1]) #switch to new tab.
@@ -76,13 +109,16 @@ def scrape_listings(csv_out="listings.csv"):
                     if json_data:
                         address = json_data.get("address", {}).get("streetAddress", "Address not found")
 
+                    listing_data['address_json'] = address
 
-                    hotels.append({"title": title, 
-                                    "address": address, 
-                                    "room_type": room_type, 
-                                    "price": price, 
-                                    "review_score": review_score, 
-                                    "num_reviews": num_reviews})
+                    web_driver.close()
+                    web_driver.switch_to.window(web_driver.window_handles[0])
+                    # hotels.append({"title": title, 
+                    #                 "address": address, 
+                    #                 "room_type": room_type, 
+                    #                 "price": price, 
+                    #                 "review_score": review_score, 
+                    #                 "num_reviews": num_reviews})
                     print(hotels)
                     
                 except NoSuchElementException as e:
@@ -111,7 +147,8 @@ def scrape_listings(csv_out="listings.csv"):
 def write_to_csv(listings, csv_out):
     try:
         with open(csv_out, "w", newline="") as csv_file:
-            fieldnames = ["title", "address", "room_type", "price", "review_score", "num_reviews"]
+            fieldnames = ["title", "address", "address_json", "price", "review_score"]
+            # fieldnames = ["title", "address", "room_type", "price", "review_score", "num_reviews"]
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(listings)
