@@ -132,7 +132,6 @@ def scrape_listings(csv_out="listings.csv"):
                     web_driver.switch_to.window(web_driver.window_handles[0])
                     
                     properties_scraped += 1
-                    print(hotels, "\n")
                     print(properties_scraped)
 
                 except NoSuchElementException as e:
@@ -154,6 +153,7 @@ def scrape_listings(csv_out="listings.csv"):
     finally:
         web_driver.quit()
 
+    print(hotels, "\n")
     write_to_csv(hotels, csv_out)
 
 
