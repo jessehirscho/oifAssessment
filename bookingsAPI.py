@@ -1,14 +1,38 @@
-import flask
-import pandas 
+import csv
+import os
+from flask import Flask, jsonify
 
-app = flask()
 
-testStr = "String"
-filename = 'test.csv'
+app = Flask(__name__)
 
-# MAKE API GET CALL
-# Load data from csv 
-def load_date():
+# Route for the root URL
+@app.route('/', methods=['GET'])
+def index():
+    return "Welcome to the Booking API!"
 
-    csv = panda.read_csv(filename)
-    return testStr
+
+# MAKE API GET CALL + Load data from csv 
+@app.route('/cheapest', methods=['GET'])
+def load_data():
+    listings = []
+
+    try:
+        file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'listings.csv')
+        with open(file_path, "r") as csv_file:
+            lines = csv.DictReader(csv_file)
+            for line in lines:
+                listings.append(line)
+            return listings
+    except FileNotFoundError:
+        return jsonify({"Err: File not exists"}), 404
+    
+    for listing in listings:
+        listing['price'] = float(listing['price'].replace('AUD ', ''))
+        
+    cheapest_listings = sorted(listings, key=lambda x: x['price'])[:50]
+    
+    return jsonify(cheapest_listings)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

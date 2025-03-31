@@ -11,21 +11,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-
-def scrape_json_data(driver):
-    try:
-        script_html_tag = driver.find_element(By.XPATH, '//script[@type="application/ld+json"]')
-        json_str = script_html_tag.get_attribute('innterHTML')
-        data = json.loads(json_str)
-        print(data)
-        return data
-    except Exception as e:
-        print(f"error scraping JSON: {e}")
-        return None
-
-
+# Extracts listing attributes
 def extract_listing_data(listing):
-    """Extracts data from a single hotel listing element."""
     listing_data = {}
 
     try:
@@ -38,7 +25,6 @@ def extract_listing_data(listing):
     except Exception:
         listing_data["address"] = "Address not found"
 
-     # Extract Room Type
     try:
         room_type_element = listing.find_element(By.CSS_SELECTOR, "div[data-testid='recommended-units']")
         lines = room_type_element.text.strip().split("\n")  # Split text into lines
@@ -55,7 +41,6 @@ def extract_listing_data(listing):
     try:
         review_text = listing.find_element(By.CSS_SELECTOR, "div[data-testid='review-score']").text.strip()
 
-        # Extract review score
         try:
             review_score_match = re.search(r'\d+\.\d+', review_text)
             if review_score_match:
@@ -65,7 +50,6 @@ def extract_listing_data(listing):
         except Exception:
             listing_data["review_xscore"] = "Review score not found"
 
-        # Extract number of reviews (using same review_text)
         try:
             num_reviews_match = re.search(r'(\d+(?:,\d+)*) real reviews?', review_text)
             if num_reviews_match:
@@ -112,16 +96,19 @@ def scrape_listings(csv_out="listings.csv"):
                 EC.presence_of_element_located((By.CSS_SELECTOR, 'h1[aria-label*="properties found"]'))
             )
             properties_text = properties_heading.text
-            properties_count = int(re.search(r'\d+', properties_text).group())  # Extract the number
+            properties_count = int(re.search(r'\d+', properties_text).group())  # num properties
             print(f"Total properties found: {properties_count}")
+
         except (NoSuchElementException, TimeoutException):
             print("Could not find properties count heading.")
             properties_count = 10000  
 
         properties_scraped = 1
+
         while properties_scraped < properties_count:
             try:
-                # Explicit wait for listings to load
+                # Wait for listings to load
+                # NOTE TO SELF: make sure careful and mimic human activity/traffic!!!
                 listings = WebDriverWait(web_driver, 20).until(
                     EC.presence_of_all_elements_located((By.CSS_SELECTOR, "div[data-testid='property-card']"))
                 )
@@ -129,7 +116,7 @@ def scrape_listings(csv_out="listings.csv"):
                 
             except (TimeoutException, WebDriverException) as e:
                 print(f"Error loading listings: {e}")
-                time.sleep(5)  # Wait before retrying
+                time.sleep(5) 
                 continue
 
             for listing in listings:
@@ -145,7 +132,6 @@ def scrape_listings(csv_out="listings.csv"):
                     web_driver.switch_to.window(web_driver.window_handles[0])
                     
                     properties_scraped += 1
-                    print(hotels, "\n")
                     print(properties_scraped)
 
                 except NoSuchElementException as e:
@@ -155,7 +141,6 @@ def scrape_listings(csv_out="listings.csv"):
                         next_button = web_driver.find_element(By.CLASS_NAME, "pagenext")
                         next_button.click()
                         time.sleep(3)
-                    
                     except NoSuchElementException as e:
                         print(f"No more pages {e}")
                         break
@@ -168,13 +153,13 @@ def scrape_listings(csv_out="listings.csv"):
     finally:
         web_driver.quit()
 
+    print(hotels, "\n")
     write_to_csv(hotels, csv_out)
 
 
 def write_to_csv(listings, csv_out):
     try:
         with open(csv_out, "w", newline="") as csv_file:
-            # fieldnames = ["title", "address", "price", "review_score", "num_reviews"]
             fieldnames = ["title", "address", "room_type", "price", "review_score", "num_reviews"]
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()
@@ -185,4 +170,3 @@ def write_to_csv(listings, csv_out):
 
 if __name__ == "__main__":
     scrape_listings()
-
