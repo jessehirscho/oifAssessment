@@ -170,4 +170,3 @@ def write_to_csv(listings, csv_out):
 
 if __name__ == "__main__":
     scrape_listings()
-
