@@ -1,26 +1,76 @@
 title,address,room_type,price,review_score,num_reviews
-Whitsunday Sands Resort,Bowen,1 double bed,AUD 170,9.0,Number of reviews not found
-Contour Hotel Katherine,Katherine,"2 beds (1 single, 1 double)",AUD 273,8.1,Number of reviews not found
-Woomargama Motel,Woomargama,1 large double bed,AUD 122,8.9,Number of reviews not found
-Aquarius Kawana,Kawana Waters,Entire apartment • 2 bedrooms • 1 living room • 2 bathrooms • 1 kitchen • 100m²,AUD 297,8.6,Number of reviews not found
-Sage Melbourne Ringwood,Ringwood,1 extra-large double bed,AUD 204,8.7,Number of reviews not found
-Low Head Pilot Station,Low Head,Entire holiday home • 1 bedroom • 1 living room • 1 bathroom • 1 kitchen • 70m²,AUD 358,8.8,Number of reviews not found
-Atura Blacktown,Blacktown,2 single beds,AUD 179,8.1,Number of reviews not found
-Kalbarri Palm Resort,Kalbarri,"2 beds (1 single, 1 double)",AUD 139,8.0,Number of reviews not found
-Angel Sussurri,Yarramalong,Multiple bed types,AUD 300,9.0,Number of reviews not found
-Kryal Castle Ballarat,Ballarat,"8 beds (1 double, 7 bunk beds)",AUD 153,8.1,Number of reviews not found
-Quest Bella Vista,Baulkham Hills,1 double bed,AUD 193,8.5,Number of reviews not found
-Ceduna Foreshore Hotel Motel,Ceduna,"2 beds (1 single, 1 double)",AUD 150,8.2,Number of reviews not found
-Echelon Apartments Yeppoon,Yeppoon,Entire apartment • 2 bedrooms • 1 living room • 1 bathroom • 1 kitchen • 114m²,AUD 385,8.5,Number of reviews not found
-Pine Tree Motel,Katherine,Entire studio • 1 bathroom • 30m²,AUD 106,8.1,Number of reviews not found
-Dolphin Lodge Albany - Self Contained Apartments at Middleton Beach,Albany,1 large double bed,AUD 205,9.0,Number of reviews not found
-"Hospitality Carnarvon, SureStay Collection by Best Western",Carnarvon,"2 beds (1 single, 1 double)",AUD 154,7.9,Number of reviews not found
-Robetown Motor Inn & Apartments,Robe,1 large double bed,AUD 155,8.0,Number of reviews not found
-Maclin Lodge Motel,Campbelltown,"2 beds (1 single, 1 large double)",AUD 145,8.1,Number of reviews not found
-Gundagai Tourist Suites,Gundagai,Entire bungalow • 1 bathroom • 25m²,AUD 150,8.6,Number of reviews not found
-Exmouth Escape Resort,Exmouth,Entire apartment • 1 bedroom • 1 living room • 1 bathroom • 36m²,AUD 298,8.6,Number of reviews not found
-Cobb Inlander Motel,Hay,"2 beds (1 single, 1 double)",AUD 160,6.7,Number of reviews not found
-Lancemore Milawa,Milawa,1 extra-large double bed,AUD 374,8.6,Number of reviews not found
-"Mu S Boutique Motel ""Matthew Flinders""",Coonabarabran,"2 beds (1 single, 1 large double)",AUD 159,7.8,Number of reviews not found
-"Hospitality Kalgoorlie, SureStay Collection by Best Western",Kalgoorlie,1 large double bed,AUD 175,7.7,Number of reviews not found
-Port Arthur Motor Inn,Port Arthur,"2 beds (1 single, 1 double)",AUD 145,7.9,Number of reviews not found
+Whitsunday Sands Resort,Bowen,1 double bed,AUD 170,9.0,1607
+Caves Coastal Bar & Bungalows,Caves Beach,Private suite,AUD 369,8.3,630
+Contour Hotel Katherine,Katherine,"2 beds (1 single, 1 double)",AUD 273,8.1,1363
+Woomargama Motel,Woomargama,1 large double bed,AUD 122,8.9,1371
+Aquarius Kawana,Kawana Waters,Entire apartment • 2 bedrooms • 1 living room • 2 bathrooms • 1 kitchen • 100m²,AUD 297,8.6,2318
+Sage Melbourne Ringwood,Ringwood,1 extra-large double bed,AUD 204,8.7,1417
+Bay Of Fires Apartments,St Helens,Private suite • 1 bedroom • 1 living room • 1 bathroom • 44m²,AUD 322,8.7,1044
+Low Head Pilot Station,Low Head,Entire holiday home • 1 bedroom • 1 living room • 1 bathroom • 1 kitchen • 70m²,AUD 358,8.8,564
+Atura Blacktown,Blacktown,2 single beds,AUD 179,8.1,1282
+Kalbarri Palm Resort,Kalbarri,"2 beds (1 single, 1 double)",AUD 139,8.0,3214
+Angel Sussurri,Yarramalong,Multiple bed types,AUD 300,9.0,172
+Kryal Castle Ballarat,Ballarat,"8 beds (1 double, 7 bunk beds)",AUD 153,8.1,1769
+Quest Bella Vista,Baulkham Hills,1 double bed,AUD 193,8.5,1598
+Ceduna Foreshore Hotel Motel,Ceduna,"2 beds (1 single, 1 double)",AUD 150,8.2,1660
+Echelon Apartments Yeppoon,Yeppoon,Entire apartment • 2 bedrooms • 1 living room • 1 bathroom • 1 kitchen • 114m²,AUD 385,8.5,993
+Pine Tree Motel,Katherine,Entire studio • 1 bathroom • 30m²,AUD 106,8.1,1597
+Dolphin Lodge Albany - Self Contained Apartments at Middleton Beach,Albany,1 large double bed,AUD 205,9.0,2640
+"Hospitality Carnarvon, SureStay Collection by Best Western",Carnarvon,"2 beds (1 single, 1 large double)",AUD 182,7.9,1949
+Robetown Motor Inn & Apartments,Robe,1 large double bed,AUD 155,8.0,1320
+Maclin Lodge Motel,Campbelltown,"2 beds (1 single, 1 large double)",AUD 145,8.1,2273
+Gundagai Tourist Suites,Gundagai,Entire bungalow • 1 bathroom • 25m²,AUD 150,8.6,1179
+Exmouth Escape Resort,Exmouth,Entire apartment • 1 bedroom • 1 living room • 1 bathroom • 36m²,AUD 298,8.6,1266
+Cobb Inlander Motel,Hay,"2 beds (1 single, 1 double)",AUD 160,6.7,1357
+Lancemore Milawa,Milawa,1 extra-large double bed,AUD 374,8.6,420
+"Mu S Boutique Motel ""Matthew Flinders""",Coonabarabran,"2 beds (1 single, 1 large double)",AUD 159,7.8,1686
+"Hospitality Kalgoorlie, SureStay Collection by Best Western",Kalgoorlie,1 large double bed,AUD 175,7.7,1366
+Port Arthur Motor Inn,Port Arthur,"2 beds (1 single, 1 double)",AUD 145,7.9,1485
+Desert Palms Alice Springs,Alice Springs,Entire villa • 1 bedroom • 1 bathroom • 24m²,AUD 174,8.2,2203
+Rydges World Square,"Sydney CBD, Sydney",Multiple bed types,AUD 276,8.1,5883
+Balgownie Estate Yarra Valley,Yarra Glen,1 large double bed,AUD 299,8.6,1810
+High Country Holiday Park,Mansfield,1 double bed,AUD 140,8.8,1538
+Olde Tudor Hotel,Launceston,1 large double bed,AUD 163,8.0,2666
+Bicheno East Coast Holiday Park,Bicheno,Entire villa • 1 bedroom • 1 living room • 1 bathroom • 24m²,AUD 119,8.2,2179
+Kingswood Motel,Tocumwal,"2 beds (1 single, 1 large double)",AUD 141,7.6,594
+Rydges Kalgoorlie,Kalgoorlie,Entire apartment • 1 bedroom • 1 living room • 1 bathroom • 1 kitchen • 53m²,AUD 350,8.2,1361
+Gundagai Cabins & Tourist Park,Gundagai,Entire chalet • 1 bedroom • 1 bathroom • 28m²,AUD 144,7.9,880
+Bega Motel,Bega,1 extra-large double bed,AUD 454,8.0,1046
+Palm Beach Bed & Breakfast,Palm Beach,1 large double bed,AUD 350,9.5,405
+Lakeview Motel and Apartments,Robe,"2 beds (1 single, 1 large double)",AUD 246,8.3,1418
+Hospitality Esperance SureStay Collection by Best Western,Esperance,"2 beds (1 single, 1 large double)",AUD 329,8.1,1825
+Up the Back,Bicheno,Entire holiday home • 2 bedrooms • 1 bathroom • 1 kitchen • 100m²,AUD 290,9.6,246
+Abode Murrumbateman,Murrumbateman,1 large double bed,AUD 178,9.0,2384
+Mission Beach Resort,Mission Beach,1 large double bed,AUD 222,8.1,1321
+Hepburn at Hepburn,Hepburn Springs,Entire villa • 1 bedroom • 1 bathroom • 64m²,AUD 368,9.3,1237
+The Oak & Anchor Hotel,Port Fairy,Private suite,AUD 444,9.0,1011
+Adelong Motel,Narrabri,"2 beds (1 single, 1 double)",AUD 190,8.7,1108
+Mornington Hotel,Mornington,Private suite,AUD 161,8.5,2379
+Ramada Resort by Wyndham Shoal Bay,Shoal Bay,Entire studio • 1 bathroom • 40m²,AUD 209,8.3,3399
+Carnarvon Central Apartments,Carnarvon,Entire apartment • 2 bedrooms • 1 bathroom • 1 kitchen • 50m²,AUD 180,8.2,679
+Redhill Cooma Motor Inn,Cooma,"2 beds (1 single, 1 large double)",AUD 145,7.6,1683
+Daylesford Art Motel,Daylesford,Private suite,AUD 268,8.9,897
+Knotts Crossing Resort,Katherine,1 large double bed,"AUD 1,169",7.4,2004
+Bowen Inn Motel,Lithgow,1 double bed,AUD 171,8.7,977
+Townhouse Motel Cowra,Cowra,1 large double bed,AUD 110,7.5,1048
+Balranald Club Motel,Balranald,Private suite • 1 bedroom • 1 living room • 1 bathroom • 30m²,AUD 140,8.4,1067
+Dalby Manor Motor Inn,Dalby,1 large double bed,AUD 173,8.4,598
+Punthill Sunshine,Sunshine,Entire studio • 1 bathroom • 1 kitchen • 25m²,AUD 190,9.0,156
+Kellys Beach Resort,Bargara,Entire villa • 2 bedrooms • 1 living room • 1 bathroom • 1 kitchen • 55m²,AUD 244,8.0,1265
+Maryborough City Motel,Maryborough,1 double bed,AUD 125,8.1,955
+Oaks Port Stephens Pacific Blue Resort,Salamander Bay,Multiple bed types,AUD 229,8.4,4944
+Broken Hill Outback Resort,Broken Hill,"2 beds (1 sofa bed, 1 large double)",AUD 198,8.5,1822
+The Bronte Boutique Hotel,Morpeth,1 large double bed,AUD 343,9.0,329
+Comfort Inn May Park,Horsham,"2 beds (1 single, 1 large double)",AUD 210,9.0,1485
+Paxton Square Cottages,Burra,Entire apartment • 1 bedroom • 1 living room • 1 bathroom • 33m²,AUD 152,9.0,1218
+Beaches on Lammermoor Apartments,"Lammermoor, Yeppoon",Entire apartment • 2 bedrooms • 2 bathrooms • 1 kitchen • 131m²,AUD 385,8.8,538
+Rydges Resort Hunter Valley,Lovedale,2 double beds,AUD 284,8.4,3565
+Sleepy Hill Motor Inn,Raymond Terrace,1 large double bed,AUD 147,8.0,1860
+Novotel Sunshine Coast Resort,Twin Waters,1 large double bed,AUD 346,7.3,2852
+Punthill Tuggeranong,Tuggeranong,Entire studio • 1 bathroom • 1 kitchen • 35m²,AUD 160,9.4,158
+Daydream Island Resort,Daydream Island,1 extra-large double bed,AUD 487,7.9,2227
+Tiny Escapes Cradle Valley,Moina,Entire chalet • 1 bedroom • 1 living room • 1 bathroom • 19m²,AUD 529,9.5,579
+Rydges Campbelltown,Campbelltown,1 large double bed,AUD 216,8.3,1781
+Sea Lake Motel,Sea Lake,2 single beds,AUD 214,7.7,377
+Great Keppel Island Hideaway,Great Keppel,1 double bed,AUD 176,8.6,447
+Nightcap at Hotel Victor,Victor Harbor,Multiple bed types,AUD 217,8.4,1296

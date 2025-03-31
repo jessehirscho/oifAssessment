@@ -10,6 +10,18 @@ from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+def scroll_to_bottom(driver):
+    last_height = driver.execute_script("return document.body.scrollHeight")
+
+    while True:
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(2)  # Wait for the page to load
+
+        new_height = driver.execute_script("return document.body.scrollHeight")
+        if new_height == last_height:
+            break
+        last_height = new_height
+
 
 # Extracts listing attributes
 def extract_listing_data(listing):
@@ -104,6 +116,7 @@ def scrape_listings(csv_out="listings.csv"):
             properties_count = 10000  
 
         properties_scraped = 1
+        scroll_to_bottom(web_driver) 
 
         while properties_scraped < properties_count:
             try:
@@ -126,8 +139,8 @@ def scrape_listings(csv_out="listings.csv"):
                     hotels.append(listing_data)
                     hotel_link = listing.find_element(By.CSS_SELECTOR, "a[data-testid='title-link']").get_attribute('href')
 
-                    web_driver.execute_script(f"window.open('{hotel_link}', '_blank');") # open new tab
-                    web_driver.switch_to.window(web_driver.window_handles[1]) # switch to new tab                 
+                    web_driver.execute_script(f"window.open('{hotel_link}', '_blank');") # opens new tab
+                    web_driver.switch_to.window(web_driver.window_handles[1]) # switches to new tab                 
                     web_driver.close()
                     web_driver.switch_to.window(web_driver.window_handles[0])
                     
