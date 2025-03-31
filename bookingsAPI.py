@@ -21,14 +21,16 @@ def load_data():
         with open(file_path, "r") as csv_file:
             lines = csv.DictReader(csv_file)
             for line in lines:
-                listings.append(line)
-            return listings
+                if 'price' in line and line['price']:  
+                    try:
+                        price_str = str(line['price'])  
+                        line['price'] = float(price_str.replace('AUD ', '').strip())
+                        listings.append(line)
+                    except ValueError:
+                        continue
     except FileNotFoundError:
         return jsonify({"Err: File not exists"}), 404
-    
-    for listing in listings:
-        listing['price'] = float(listing['price'].replace('AUD ', ''))
-        
+   
     cheapest_listings = sorted(listings, key=lambda x: x['price'])[:50]
     
     return jsonify(cheapest_listings)
